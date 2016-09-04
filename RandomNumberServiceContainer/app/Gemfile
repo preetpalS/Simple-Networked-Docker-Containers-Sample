@@ -1,0 +1,11 @@
+
+source 'https://rubygems.org'
+
+# Web Framework
+gem 'sinatra', require: 'sinatra/base'
+
+# Make-like program implemented in Ruby
+gem 'rake'
+
+# Web Server
+gem 'puma'

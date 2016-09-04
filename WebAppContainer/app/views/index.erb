@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Networked Docker Containers Sample</title>
+  </head>
+  <body>
+    <h1>Simple Networked Docker Containers Sample (Random Number Generator)</h1>
+
+    <p id="random-number-result-placeholder">Fetching your random number...</p>
+    <script>
+     "use strict";
+     (function() {
+       var httpRequest = new XMLHttpRequest();
+       var displayResponse = function(replacementText) {
+         document.getElementById('random-number-result-placeholder').innerHTML = replacementText;
+       };
+       var convertHttpResponseToUserResponse = function(httpResponseText) {
+         var val = JSON.parse(httpResponseText)['value'];
+         return ("Your random number is: " + val);
+       };
+
+       if (httpRequest) {
+         httpRequest.onreadystatechange = function() {
+           if (httpRequest.readyState === XMLHttpRequest.DONE) {
+             if (httpRequest.status === 200) {
+               displayResponse(convertHttpResponseToUserResponse(httpRequest.responseText));
+             } else {
+               displayResponse('There was a problem retrieving your random number. Please try again later.');
+             }
+           }
+         }
+         httpRequest.open('GET', '/random');
+         httpRequest.send();
+       } else {
+         displayResponse('Unable to make HTTP request. Try a different browser?')
+       }
+     })();
+    </script>
+  </body>
+</html>

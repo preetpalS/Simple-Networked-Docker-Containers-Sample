@@ -1,0 +1,10 @@
+
+require 'bundler'
+Bundler.require(:default)
+
+task :run do
+  require_relative './random_number_service.rb'
+  RandomNumberService.run!
+end
+
+task default: :run

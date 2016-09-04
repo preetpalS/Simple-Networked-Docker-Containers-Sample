@@ -1,0 +1,10 @@
+
+require 'bundler'
+Bundler.require(:default)
+
+task :run do
+  require_relative './web_app.rb'
+  WebApp.run!
+end
+
+task default: :run
