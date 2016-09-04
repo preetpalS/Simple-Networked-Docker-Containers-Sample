@@ -28,4 +28,8 @@ class WebApp < Sinatra::Base
   get '/random' do
     RandomNumberServiceConnection.json_response
   end
+
+  get '/env' do
+    ENV.inspect.to_s
+  end
 end

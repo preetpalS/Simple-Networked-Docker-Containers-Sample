@@ -10,4 +10,8 @@ class RandomNumberService < Sinatra::Base
 {"value": "#{rand(1..100)}"}
 JSON
   end
+
+  get '/env' do
+    ENV.inspect.to_s
+  end
 end
