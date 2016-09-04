@@ -1,0 +1,14 @@
+version: '2'
+services:
+  web-app:
+    image: random-number-web-app
+    links:
+      - random-number-service
+    ports:
+      - "8080:8080"
+    environment:
+      - DOCKER=true
+    depends_on:
+      - random-number-service
+  random-number-service:
+    image: random-number-service

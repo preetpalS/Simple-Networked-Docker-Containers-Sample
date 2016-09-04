@@ -2,7 +2,7 @@
 require 'net/http'
 
 class RandomNumberServiceConnection
-  BIND = ENV['RANDOM_NUMBER_SERVICE_BIND'] || '0.0.0.0'
+  BIND = ENV['DOCKER'] ? 'random-number-service' : (ENV['RANDOM_NUMBER_SERVICE_BIND'] || '0.0.0.0')
   PORT = ENV['RANDOM_NUMBER_SERVICE_PORT'] || 8081
   SERVICE_URI = URI("http://#{BIND}:#{PORT}/")
 
